@@ -1,0 +1,50 @@
+{
+  "name": "@samhammer/ckeditor5-inlinelink-plugin",
+  "version": "0.1.0",
+  "description": "A generic ckeditor plugin to create link tags containing an internal identifier instead of a url.",
+  "keywords": [
+    "ckeditor",
+    "ckeditor5",
+    "ckeditor 5",
+    "ckeditor5-feature"
+  ],
+  "dependencies": {
+    "@ckeditor/ckeditor5-core": "^10.1.0",
+    "@ckeditor/ckeditor5-engine": "^10.1.0",
+    "@ckeditor/ckeditor5-ui": "^10.1.0"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-editor-classic": "^10.0.1",
+    "@ckeditor/ckeditor5-enter": "^10.1.0",
+    "@ckeditor/ckeditor5-heading": "^10.0.1",
+    "@ckeditor/ckeditor5-paragraph": "^10.0.1",
+    "@ckeditor/ckeditor5-typing": "^10.0.1",
+    "@ckeditor/ckeditor5-utils": "^10.1.0",
+    "eslint": "^4.15.0",
+    "eslint-config-ckeditor5": "^1.0.7",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
+  },
+  "files": [
+    "lang",
+    "src",
+    "theme"
+  ],
+  "scripts": {
+    "lint": "eslint --quiet '**/*.js'",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --quiet"
+    ]
+  },
+  "eslintIgnore": [
+    "src/lib/**",
+    "packages/**"
+  ]
+}

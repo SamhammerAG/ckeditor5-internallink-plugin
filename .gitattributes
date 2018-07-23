@@ -1,0 +1,17 @@
+*			text=auto
+
+*.htaccess	eol=lf
+*.cgi		eol=lf
+*.sh		eol=lf
+
+*.css		text
+*.htm		text
+*.html		text
+*.js		text
+*.json		text
+*.txt		text
+*.md		text
+
+*.png		-text
+*.gif		-text
+*.jpg		-text
