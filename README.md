@@ -1,2 +1,2 @@
-# ckeditor5-link-plugin
-A generic ckeditor plugin to create link tags containing an identifier instead of a url
+# ckeditor5-internallink-plugin
+A generic ckeditor plugin to create link tags containing an internal identifier instead of a url
