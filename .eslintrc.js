@@ -24,6 +24,10 @@ module.exports = {
         'space-in-parens': [
             'error',
             'never'
+        ],
+        'operator-linebreak': [
+            'error',
+            'before'
         ]
     }
 };
