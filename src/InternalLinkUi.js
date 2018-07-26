@@ -501,21 +501,25 @@ export default class InternalLinkUi extends Plugin {
     getSelectedLinkElement() {
         const selection = this.editor.editing.view.document.selection;
 
-        // The range for fully selected link is usually anchored in adjacent text nodes.
-        // Trim it to get closer to the actual link element.
-        const range = selection.getFirstRange().getTrimmed();
-        const startLink = this.findLinkElementAncestor(range.start);
-        const endLink = this.findLinkElementAncestor(range.end);
-
-        if (!startLink || startLink != endLink) {
-            return null;
-        }
-
-        // Check if the link element is fully selected.
-        if (Range.createIn(startLink).getTrimmed().isEqual(range)) {
-            return startLink;
+        if (selection.isCollapsed) {
+            return this.findLinkElementAncestor(selection.getFirstPosition());
         } else {
-            return null;
+            // The range for fully selected link is usually anchored in adjacent text nodes.
+            // Trim it to get closer to the actual link element.
+            const range = selection.getFirstRange().getTrimmed();
+            const startLink = this.findLinkElementAncestor(range.start);
+            const endLink = this.findLinkElementAncestor(range.end);
+
+            if (!startLink || startLink != endLink) {
+                return null;
+            }
+
+            // Check if the link element is fully selected.
+            if (Range.createIn(startLink).getTrimmed().isEqual(range)) {
+                return startLink;
+            } else {
+                return null;
+            }
         }
     }
 
