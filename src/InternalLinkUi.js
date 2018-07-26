@@ -147,9 +147,9 @@ export default class InternalLinkUi extends Plugin {
             return;
         }
 
-        const editor = this.editor;
+        const editingView = this.editor.editing.view;
 
-        this.stopListening(editor.ui, 'update');
+        this.stopListening(editingView, 'render');
 
         // Remove form first because it's on top of the stack.
         this.removeFormView();
@@ -158,7 +158,7 @@ export default class InternalLinkUi extends Plugin {
         this.balloon.remove(this.actionsView);
 
         // Make sure the focus always gets back to the editable.
-        editor.editing.view.focus();
+        editingView.focus();
     }
 
     /**
@@ -170,12 +170,12 @@ export default class InternalLinkUi extends Plugin {
      * @protected
      */
     startUpdatingUI() {
-        const editor = this.editor;
+        const editingView = this.editor.editing.view;
 
         let prevSelectedLink = this.getSelectedLinkElement();
         let prevSelectionParent = this.getSelectionParent();
 
-        this.listenTo(editor.ui, 'update', () => {
+        this.listenTo(editingView, 'render', () => {
             const selectedLink = this.getSelectedLinkElement();
             const selectionParent = this.getSelectionParent();
 
