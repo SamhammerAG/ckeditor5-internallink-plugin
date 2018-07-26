@@ -4,6 +4,7 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
+import InternalLinkEditing from './internalLinkEditing';
 import InternalLinkUi from './internalLinkUi';
 
 /**
@@ -19,7 +20,7 @@ export default class InlineLink extends Plugin {
      * @inheritDoc
      */
     static get requires() {
-        return [InternalLinkUi];
+        return [InternalLinkEditing, InternalLinkUi];
     }
 
     /**

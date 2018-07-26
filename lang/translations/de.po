@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Language: de\n"
+"Language-Team: German (Samhammer AG)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "Toolbar button for the internal link action and label of the edit textbox"
+msgid "Internal link"
+msgstr "Interner Link"
+
+msgctxt "The unlink button in edit area."
+msgid "Unlink"
+msgstr "Link entfernen"
+
+msgctxt "The edit button in edit area."
+msgid "Edit link"
+msgstr "Link bearbeiten"
+
+msgctxt "Tooltip on the link in edit area."
+msgid "Open link in new tab"
+msgstr "Link in neuem Tab öffnen"
+
+msgctxt "Label of an invalid link in edit area."
+msgid "This link is invalid"
+msgstr "Dieser Link ist ungültig"
+
+msgctxt "Placeholder of the autocomplete textbox to find an internal item."
+msgid "Enter title or id"
+msgstr "Id oder Titel eingeben"

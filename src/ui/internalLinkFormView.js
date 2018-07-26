@@ -152,8 +152,8 @@ export default class InternalLinkFormView extends View {
 
         const labeledInput = new LabeledInputView(this.locale, InputTextView);
 
-        labeledInput.label = t('Link Id');
-        labeledInput.inputView.placeholder = t('Enter title or article id');
+        labeledInput.label = t('Internal link');
+        labeledInput.inputView.placeholder = t('Enter title or id');
 
         return labeledInput;
     }

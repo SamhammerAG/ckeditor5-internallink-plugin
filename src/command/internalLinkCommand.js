@@ -1,16 +1,13 @@
 /**
- * @license Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module link/internalLinkCommand
+ * @module internalLink/internalLinkCommand
  */
 
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import Range from '@ckeditor/ckeditor5-engine/src/model/range';
-import findLinkRange from './findlinkrange';
+import findLinkRange from '../findlinkrange';
 import toMap from '@ckeditor/ckeditor5-utils/src/tomap';
+
+import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE } from '../constants';
 
 /**
  * The internal link command. It is used by the {@link module:internalLink/internalLink~internalLink internal link feature}.
@@ -34,8 +31,8 @@ export default class InternalLinkCommand extends Command {
         const model = this.editor.model;
         const doc = model.document;
 
-        this.value = doc.selection.getAttribute('internalLinkId');
-        this.isEnabled = model.schema.checkAttributeInSelection(doc.selection, 'internalLinkId');
+        this.value = doc.selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
+        this.isEnabled = model.schema.checkAttributeInSelection(doc.selection, MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
     }
 
     /**
@@ -64,11 +61,11 @@ export default class InternalLinkCommand extends Command {
                 const position = selection.getFirstPosition();
 
                 // When selection is inside text with `internalLinkId` attribute.
-                if (selection.hasAttribute('internalLinkId')) {
+                if (selection.hasAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE)) {
                     // Then update `internalLinkId` value.
-                    const linkRange = findLinkRange(selection.getFirstPosition(), selection.getAttribute('internalLinkId'));
+                    const linkRange = findLinkRange(selection.getFirstPosition(), selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE));
 
-                    writer.setAttribute('internalLinkId', internalLinkId, linkRange);
+                    writer.setAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId, linkRange);
 
                     // Create new range wrapping changed link.
                     writer.setSelection(linkRange);
@@ -79,7 +76,7 @@ export default class InternalLinkCommand extends Command {
                 else if (internalLinkId !== '') {
                     const attributes = toMap(selection.getAttributes());
 
-                    attributes.set('internalLinkId', internalLinkId);
+                    attributes.set(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId);
 
                     const node = writer.createText(internalLinkId, attributes);
 
@@ -91,10 +88,10 @@ export default class InternalLinkCommand extends Command {
             } else {
                 // If selection has non-collapsed ranges, we change attribute on nodes inside those ranges
                 // omitting nodes where `internalLinkId` attribute is disallowed.
-                const ranges = model.schema.getValidRanges(selection.getRanges(), 'internalLinkId');
+                const ranges = model.schema.getValidRanges(selection.getRanges(), MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
 
                 for (const range of ranges) {
-                    writer.setAttribute('internalLinkId', internalLinkId, range);
+                    writer.setAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId, range);
                 }
             }
         });
