@@ -17,6 +17,9 @@ import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
 
 import { createButton, createFocusCycler, registerFocusableViews } from './uiutils';
 
+import Awesomplete from 'awesomplete';
+import delayKeyUp from 'delay-keyup';
+
 /**
  * The internal link form view controller class.
  *
@@ -118,6 +121,8 @@ export default class InternalLinkFormView extends View {
     render() {
         super.render();
 
+        this.initAutocomplete();
+
         submitHandler({
             view: this
         });
@@ -156,6 +161,33 @@ export default class InternalLinkFormView extends View {
         labeledInput.inputView.placeholder = t('Enter title or id');
 
         return labeledInput;
+    }
+
+    initAutocomplete() {
+        if (this.autocomplete) {
+            return;
+        }
+
+        this.autocomplete = new Awesomplete(this.idInputView.inputView.element, { list: [] });
+
+        delayKeyUp(
+            this.idInputView.inputView.element,
+            this.loadAutocompleteData.bind(this),
+            500);
+    }
+
+    loadAutocompleteData() {
+        this.autocompleteData = ['Vuejs', 'Npm', 'Node.js'];
+        this.autocomplete.list = this.autocompleteData;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    destroy() {
+        if (this.autocomplete) {
+            this.autocomplete.destroy();
+        }
     }
 
 }
