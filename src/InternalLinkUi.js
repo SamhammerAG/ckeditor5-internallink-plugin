@@ -230,18 +230,22 @@ export default class InternalLinkUi extends Plugin {
      */
     createFormView() {
         const editor = this.editor;
-        const formView = new InternalLinkFormView(editor.locale);
+        const formView = new InternalLinkFormView(editor);
         const linkCommand = editor.commands.get(COMMAND_LINK);
 
         formView.idInputView.bind('value').to(linkCommand, 'value');
+        formView.titleLabelView.bind('text').to(linkCommand, 'title');
 
         // Form elements should be read-only when corresponding commands are disabled.
         formView.idInputView.bind('isReadOnly').to(linkCommand, 'isEnabled', value => !value);
-        formView.saveButtonView.bind('isEnabled').to(linkCommand);
 
         // Execute link command after clicking the "Save" button.
         this.listenTo(formView, 'submit', () => {
-            editor.execute(COMMAND_LINK, formView.idInputView.inputView.element.value);
+            editor.execute(
+                COMMAND_LINK,
+                formView.idInputView.inputView.element.value,
+                formView.titleLabelView.text);
+
             this.removeFormView();
         });
 
@@ -267,11 +271,13 @@ export default class InternalLinkUi extends Plugin {
      */
     createActionsView() {
         const editor = this.editor;
-        const actionsView = new InternalLinkActionsView(editor.locale);
+        const actionsView = new InternalLinkActionsView(editor);
         const linkCommand = editor.commands.get(COMMAND_LINK);
         const unlinkCommand = editor.commands.get(COMMAND_UNLINK);
 
         actionsView.bind(VIEW_INTERNAL_LINK_ID_ATTRIBUTE).to(linkCommand, 'value');
+        actionsView.bind('title').to(linkCommand, 'title');
+
         actionsView.editButtonView.bind('isEnabled').to(linkCommand);
         actionsView.unlinkButtonView.bind('isEnabled').to(unlinkCommand);
 
@@ -396,6 +402,7 @@ export default class InternalLinkUi extends Plugin {
         // https://github.com/ckeditor/ckeditor5-link/issues/78
         // https://github.com/ckeditor/ckeditor5-link/issues/123
         this.formView.idInputView.inputView.element.value = linkCommand.value || '';
+        this.formView.titleLabelView.text = linkCommand.title || '';
     }
 
     /**

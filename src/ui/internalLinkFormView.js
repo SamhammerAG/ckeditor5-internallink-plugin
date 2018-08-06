@@ -5,6 +5,7 @@
 import View from '@ckeditor/ckeditor5-ui/src/view';
 import ViewCollection from '@ckeditor/ckeditor5-ui/src/viewcollection';
 
+import LabelView from '@ckeditor/ckeditor5-ui/src/label/labelview';
 import LabeledInputView from '@ckeditor/ckeditor5-ui/src/labeledinput/labeledinputview';
 import InputTextView from '@ckeditor/ckeditor5-ui/src/inputtext/inputtextview';
 
@@ -16,9 +17,12 @@ import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
 import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
 
 import { createButton, createFocusCycler, registerFocusableViews } from './uiutils';
+import delayKeyUp from 'delay-keyup';
 
 import Awesomplete from 'awesomplete';
-import delayKeyUp from 'delay-keyup';
+import InternalLinkDataContext from '../internalLinkDataContext';
+
+import '../../theme/internallinkform.css';
 
 /**
  * The internal link form view controller class.
@@ -32,10 +36,19 @@ export default class InternalLinkFormView extends View {
     /**
      * @inheritDoc
      */
-    constructor(locale) {
-        super(locale);
+    constructor(editor) {
+        super(editor.locale);
 
-        const t = locale.t;
+        const t = this.locale.t;
+
+        /**
+         * Used for accessing web services to load the link data.
+         *
+         * @readonly
+         * @protected
+         * @member {module:InternalLink/InternalLinkDataContext}
+         */
+        this.dataContext = new InternalLinkDataContext(editor);
 
         /**
          * A collection of views which can be focused in the form.
@@ -79,12 +92,20 @@ export default class InternalLinkFormView extends View {
         this.idInputView = this.createIdInput();
 
         /**
+         * The description to a selected id.
+         *
+         * @member {module:ui/label/labelview~LabelView}
+         */
+        this.titleLabelView = this.createTitleLabel();
+
+        /**
          * The Save button view.
          *
          * @member {module:ui/button/buttonview~ButtonView}
          */
         this.saveButtonView = createButton(t('Save'), checkIcon, this.locale, 'ck-button-save');
         this.saveButtonView.type = 'submit';
+        this.saveButtonView.bind('isEnabled').to(this.titleLabelView, 'text');
 
         /**
          * The Cancel button view.
@@ -110,7 +131,8 @@ export default class InternalLinkFormView extends View {
             children: [
                 this.idInputView,
                 this.saveButtonView,
-                this.cancelButtonView
+                this.cancelButtonView,
+                this.titleLabelView
             ]
         });
     }
@@ -130,7 +152,8 @@ export default class InternalLinkFormView extends View {
         const childViews = [
             this.idInputView,
             this.saveButtonView,
-            this.cancelButtonView
+            this.cancelButtonView,
+            this.titleLabelView
         ];
 
         // The two below commands are called this way in every plugin.
@@ -156,11 +179,21 @@ export default class InternalLinkFormView extends View {
         const t = this.locale.t;
 
         const labeledInput = new LabeledInputView(this.locale, InputTextView);
-
-        labeledInput.label = t('Internal link');
         labeledInput.inputView.placeholder = t('Enter title or id');
 
         return labeledInput;
+    }
+
+    /**
+     * Creates the label to a selected id.
+     *
+     * @private
+     * @returns {module:ui/label/labelview~LabelView} Labele view instance.
+     */
+    createTitleLabel() {
+        const label = new LabelView(this.locale);
+        label.text = '';
+        return label;
     }
 
     initAutocomplete() {
@@ -168,17 +201,28 @@ export default class InternalLinkFormView extends View {
             return;
         }
 
-        this.autocomplete = new Awesomplete(this.idInputView.inputView.element, { list: [] });
+        this.autocomplete = new Awesomplete(this.idInputView.inputView.element, {
+            list: [],
+            filter() {
+                // Dont filter client side. The web service returns the data that should be shown only.
+                return true;
+            }
+        });
 
         delayKeyUp(
             this.idInputView.inputView.element,
             this.loadAutocompleteData.bind(this),
             500);
+
+        this.idInputView.inputView.element.addEventListener('awesomplete-selectcomplete', function(event) {
+            this.titleLabelView.text = event.text.label;
+        }.bind(this));
+
     }
 
     loadAutocompleteData() {
-        this.autocompleteData = ['Vuejs', 'Npm', 'Node.js'];
-        this.autocomplete.list = this.autocompleteData;
+        this.titleLabelView.text = '';
+        this.autocomplete.list = this.dataContext.autocomplete(this.idInputView.inputView.element.value);
     }
 
     /**
