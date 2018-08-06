@@ -10,6 +10,10 @@
         line-height: 35px;
     }
 
+    & .ck-button.ck-disabled {
+        color: var(--ck-color-switch-button-off-background);
+    }
+
     & .awesomplete [hidden] {
         display: none;
     }
