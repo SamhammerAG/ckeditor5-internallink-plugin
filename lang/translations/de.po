@@ -6,7 +6,7 @@ msgstr ""
 
 msgctxt "Toolbar button for the internal link action and label of the edit textbox"
 msgid "Internal link"
-msgstr "Interner Link"
+msgstr "Artikel-Link"
 
 msgctxt "The unlink button in edit area."
 msgid "Unlink"
