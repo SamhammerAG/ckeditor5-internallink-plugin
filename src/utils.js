@@ -29,3 +29,14 @@ export function createLinkElement(internalLinkId, writer) {
 
     return linkElement;
 }
+
+/**
+ * Replaces a placeholder inside an url with the actual value.
+ * The value is correctly encoded inside this function.
+ * @param {*} url The url with placeholder
+ * @param {*} placeholder A placeholder to replace
+ * @param {*} value The value to insert instead of the placeholder
+ */
+export function replacePlaceholderInUrl(url, placeholder, value) {
+    return url.replace(placeholder, encodeURI(value));
+}
