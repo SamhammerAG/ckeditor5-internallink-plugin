@@ -15,7 +15,7 @@ import InternalLinkActionsView from './internalLinkActionsView';
 import LinkIcon from '../../theme/icons/link.svg';
 
 import { createButton } from './uiUtils';
-import { isLinkElement } from '../utils';
+import { isLinkElement } from '../util/utils';
 
 import {
     PROPERTY_INTERNAL_LINK_ID,
@@ -23,7 +23,7 @@ import {
     PROPERTY_VALUE,
     COMMAND_LINK,
     COMMAND_UNLINK,
-    BUTTON_LINK } from '../constants';
+    BUTTON_LINK } from '../util/constants';
 
 export default class InternalLinkUi extends Plugin {
 

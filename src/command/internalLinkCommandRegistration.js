@@ -1,22 +1,22 @@
 /**
- * @module internalLink/internalLinkCommands
+ * @module internalLink/internalLinkCommandRegistration
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-import LinkCommand from './command/internalLinkCommand';
-import UnlinkCommand from './command/internalUnlinkCommand';
+import LinkCommand from './internalLinkCommand';
+import UnlinkCommand from './internalUnlinkCommand';
 
 import {
     COMMAND_LINK,
-    COMMAND_UNLINK } from './constants';
+    COMMAND_UNLINK } from '../util/constants';
 
 /**
  * Plugin used to register the commands.
  *
  * @extends module:core/plugin~Plugin
  */
-export default class InternalLinkCommands extends Plugin {
+export default class internalLinkCommandRegistration extends Plugin {
 
     /**
      * @inheritDoc

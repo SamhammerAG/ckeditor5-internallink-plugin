@@ -9,7 +9,7 @@ import {
     CONFIG_AUTOCOMPLETE_URL,
     CONFIG_TITLE_URL,
     CONFIG_PREVIEW_URL
-} from './constants';
+} from '../util/constants';
 
 /**
  * Initializes the default configuration.

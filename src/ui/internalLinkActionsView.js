@@ -11,7 +11,7 @@ import FocusTracker from '@ckeditor/ckeditor5-utils/src/focustracker';
 import KeystrokeHandler from '@ckeditor/ckeditor5-utils/src/keystrokehandler';
 
 import { createButton, createFocusCycler, registerFocusableViews } from './uiutils';
-import { replacePlaceholderInUrl } from '../utils';
+import { replacePlaceholderInUrl } from '../util/utils';
 
 import unlinkIcon from '../../theme/icons/unlink.svg';
 import pencilIcon from '@ckeditor/ckeditor5-core/theme/icons/pencil.svg';
@@ -20,7 +20,7 @@ import { PROPERTY_INTERNAL_LINK_ID,
     PROPERTY_TITLE,
     CONFIG_PREVIEW_URL,
     URL_PLACEHOLDER_ID
-} from '../constants';
+} from '../util/constants';
 
 /**
  * The link actions view class. This view displays link preview, allows

@@ -3,9 +3,9 @@
  */
 
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import findLinkRange from '../findlinkrange';
+import findLinkRange from '../util/findlinkrange';
 
-import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE } from '../constants';
+import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE } from '../util/constants';
 
 /**
  * The unlink command. It is used by the {@link module:link/link~Link link plugin}.

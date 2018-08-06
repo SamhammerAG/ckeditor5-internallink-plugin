@@ -4,11 +4,11 @@
 
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import Range from '@ckeditor/ckeditor5-engine/src/model/range';
-import findLinkRange from '../findlinkrange';
+import findLinkRange from '../util/findlinkrange';
 import toMap from '@ckeditor/ckeditor5-utils/src/tomap';
-import InternalLinkDataContext from '../internalLinkDataContext';
+import InternalLinkDataContext from '../data/internalLinkDataContext';
 
-import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE } from '../constants';
+import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE } from '../util/constants';
 
 /**
  * The internal link command. It is used by the {@link module:internalLink/internalLink~internalLink internal link feature}.

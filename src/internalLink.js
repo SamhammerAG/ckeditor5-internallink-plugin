@@ -4,8 +4,8 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-import InternalLinkConfig from './internalLinkConfig';
-import InternalLinkCommands from './internalLinkCommands';
+import InternalLinkConfig from './config/internalLinkConfig';
+import InternalLinkCommandRegistration from './command/internalLinkCommandRegistration';
 import InternalLinkEditing from './internalLinkEditing';
 import InternalLinkUi from './ui/internalLinkUi';
 
@@ -22,7 +22,7 @@ export default class InternalLink extends Plugin {
      * @inheritDoc
      */
     static get requires() {
-        return [InternalLinkConfig, InternalLinkCommands, InternalLinkEditing, InternalLinkUi];
+        return [InternalLinkConfig, InternalLinkCommandRegistration, InternalLinkEditing, InternalLinkUi];
     }
 
     /**

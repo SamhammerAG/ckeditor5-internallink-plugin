@@ -7,9 +7,9 @@ import {
     downcastAttributeToElement
 } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
 import { upcastElementToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/upcast-converters';
-import { createLinkElement } from './utils';
+import { createLinkElement } from './util/utils';
 import bindTwoStepCaretToAttribute from '@ckeditor/ckeditor5-engine/src/utils/bindtwostepcarettoattribute';
-import findLinkRange from './findlinkrange';
+import findLinkRange from './util/findlinkrange';
 
 import '../theme/editing.css';
 
@@ -17,7 +17,7 @@ import {
     VIEW_INTERNAL_LINK_TAG,
     VIEW_INTERNAL_LINK_ID_ATTRIBUTE,
     MODEL_INTERNAL_LINK_ID_ATTRIBUTE,
-    CLASS_HIGHLIGHT } from './constants';
+    CLASS_HIGHLIGHT } from './util/constants';
 
 /**
  * The link engine feature.

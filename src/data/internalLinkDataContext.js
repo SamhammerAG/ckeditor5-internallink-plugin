@@ -4,7 +4,7 @@
 
 // import axios from 'axios';
 
-import { replacePlaceholderInUrl } from './utils';
+import { replacePlaceholderInUrl } from '../util/utils';
 
 import {
     CONFIG_TEST_MODE,
@@ -12,7 +12,7 @@ import {
     CONFIG_TITLE_URL,
     URL_PLACEHOLDER_ID,
     URL_PLACEHOLDER_SEARCH_TERM
-} from './constants';
+} from '../util/constants';
 
 /**
  * This is used to call a web service for finding

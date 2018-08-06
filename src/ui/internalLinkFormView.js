@@ -20,11 +20,11 @@ import { createButton, createFocusCycler, registerFocusableViews } from './uiuti
 import delayKeyUp from 'delay-keyup';
 
 import Awesomplete from 'awesomplete';
-import InternalLinkDataContext from '../internalLinkDataContext';
+import InternalLinkDataContext from '../data/internalLinkDataContext';
 
 import { PROPERTY_INTERNAL_LINK_ID,
     PROPERTY_TITLE
-} from '../constants';
+} from '../util/constants';
 
 import '../../theme/internallinkform.css';
 
