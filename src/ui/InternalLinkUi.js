@@ -254,6 +254,7 @@ export default class InternalLinkUi extends Plugin {
         // Hide the panel after clicking the "Cancel" button.
         this.listenTo(formView, 'cancel', () => {
             this.removeFormView();
+            this.hideUI();
         });
 
         // Close the panel on esc key press when the **form has focus**.
