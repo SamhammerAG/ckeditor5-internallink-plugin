@@ -9,13 +9,13 @@ import Range from '@ckeditor/ckeditor5-engine/src/view/range';
 import ContextualBalloon from '@ckeditor/ckeditor5-ui/src/panel/balloon/contextualballoon';
 import clickOutsideHandler from '@ckeditor/ckeditor5-ui/src/bindings/clickoutsidehandler';
 
-import InternalLinkFormView from './ui/internalLinkFormView';
-import InternalLinkActionsView from './ui/internalLinkActionsView';
+import InternalLinkFormView from './internalLinkFormView';
+import InternalLinkActionsView from './internalLinkActionsView';
 
-import LinkIcon from '../theme/icons/link.svg';
+import LinkIcon from '../../theme/icons/link.svg';
 
-import { createButton } from './ui/uiUtils';
-import { isLinkElement } from './utils';
+import { createButton } from './uiUtils';
+import { isLinkElement } from '../utils';
 
 import {
     PROPERTY_INTERNAL_LINK_ID,
@@ -23,7 +23,7 @@ import {
     PROPERTY_VALUE,
     COMMAND_LINK,
     COMMAND_UNLINK,
-    BUTTON_LINK } from './constants';
+    BUTTON_LINK } from '../constants';
 
 export default class InternalLinkUi extends Plugin {
 

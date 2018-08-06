@@ -7,7 +7,7 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import InternalLinkConfig from './internalLinkConfig';
 import InternalLinkCommands from './internalLinkCommands';
 import InternalLinkEditing from './internalLinkEditing';
-import InternalLinkUi from './internalLinkUi';
+import InternalLinkUi from './ui/internalLinkUi';
 
 /**
  * The internal link plugin. It introduces the Link and Unlink buttons for internal links.
