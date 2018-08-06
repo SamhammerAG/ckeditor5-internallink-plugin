@@ -8,7 +8,6 @@ import { replacePlaceholderInUrl } from './utils';
 
 import {
     CONFIG_TEST_MODE,
-    CONFIG_BASE_URL,
     CONFIG_AUTOCOMPLETE_URL,
     CONFIG_TITLE_URL,
     URL_PLACEHOLDER_ID,
@@ -31,8 +30,8 @@ export default class InternalLinkDataContext {
      */
     getAutocompleteItems(searchTerm) {
         const isTestMode = this.editor.config.get(CONFIG_TEST_MODE);
-        const templateUrl = this.editor.config.get(CONFIG_BASE_URL) + this.editor.config.get(CONFIG_AUTOCOMPLETE_URL);
-        const autocompleteUrl = replacePlaceholderInUrl(templateUrl, URL_PLACEHOLDER_SEARCH_TERM, searchTerm);
+        const url = this.editor.config.get(CONFIG_AUTOCOMPLETE_URL);
+        const autocompleteUrl = replacePlaceholderInUrl(url, URL_PLACEHOLDER_SEARCH_TERM, searchTerm);
 
         if (isTestMode) {
             return this.getAutocompleteTestData(searchTerm);
@@ -47,8 +46,8 @@ export default class InternalLinkDataContext {
      */
     getTitleById(itemId) {
         const isTestMode = this.editor.config.get(CONFIG_TEST_MODE);
-        const templateUrl = this.editor.config.get(CONFIG_BASE_URL) + this.editor.config.get(CONFIG_TITLE_URL);
-        const titleUrl = replacePlaceholderInUrl(templateUrl, URL_PLACEHOLDER_ID, itemId);
+        const url = this.editor.config.get(CONFIG_TITLE_URL);
+        const titleUrl = replacePlaceholderInUrl(url, URL_PLACEHOLDER_ID, itemId);
 
         if (isTestMode) {
             return this.getTitleTestData(itemId);

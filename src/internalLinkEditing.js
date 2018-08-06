@@ -17,7 +17,7 @@ import {
     VIEW_INTERNAL_LINK_TAG,
     VIEW_INTERNAL_LINK_ID_ATTRIBUTE,
     MODEL_INTERNAL_LINK_ID_ATTRIBUTE,
-    HIGHLIGHT_CLASS,
+    CLASS_HIGHLIGHT,
     COMMAND_LINK,
     COMMAND_UNLINK } from './constants';
 
@@ -111,7 +111,7 @@ export default class InternalLinkEditing extends Plugin {
                 // broken by a UIElement.
                 for (const item of viewRange.getItems()) {
                     if (item.is(VIEW_INTERNAL_LINK_TAG)) {
-                        writer.addClass(HIGHLIGHT_CLASS, item);
+                        writer.addClass(CLASS_HIGHLIGHT, item);
                         highlightedLinks.add(item);
                     }
                 }
@@ -129,7 +129,7 @@ export default class InternalLinkEditing extends Plugin {
             function removeHighlight() {
                 view.change(writer => {
                     for (const item of highlightedLinks.values()) {
-                        writer.removeClass(HIGHLIGHT_CLASS, item);
+                        writer.removeClass(CLASS_HIGHLIGHT, item);
                         highlightedLinks.delete(item);
                     }
                 });

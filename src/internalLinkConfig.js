@@ -6,7 +6,6 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 import {
     CONFIG_TEST_MODE,
-    CONFIG_BASE_URL,
     CONFIG_AUTOCOMPLETE_URL,
     CONFIG_TITLE_URL,
     CONFIG_PREVIEW_URL
@@ -26,7 +25,6 @@ export default class InternalLinkConfig extends Plugin {
      *			.create( editorElement, {
      * 				internallink: {
      *                  testmode: false,
-     *                  baseurl: '',
      *                  autocompleteurl: '',
      *                  titleurl: '',
      *                  previewurl: ''
@@ -47,7 +45,6 @@ export default class InternalLinkConfig extends Plugin {
         const editor = this.editor;
 
         editor.config.define(CONFIG_TEST_MODE, false);
-        editor.config.define(CONFIG_BASE_URL, '');
         editor.config.define(CONFIG_AUTOCOMPLETE_URL, '');
         editor.config.define(CONFIG_TITLE_URL, '');
         editor.config.define(CONFIG_PREVIEW_URL, 'http://www.google.de?q={internalLinkId}');
