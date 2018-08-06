@@ -7,8 +7,6 @@ import {
     downcastAttributeToElement
 } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
 import { upcastElementToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/upcast-converters';
-import LinkCommand from './command/internalLinkCommand';
-import UnlinkCommand from './command/internalUnlinkCommand';
 import { createLinkElement } from './utils';
 import bindTwoStepCaretToAttribute from '@ckeditor/ckeditor5-engine/src/utils/bindtwostepcarettoattribute';
 import findLinkRange from './findlinkrange';
@@ -19,9 +17,7 @@ import {
     VIEW_INTERNAL_LINK_TAG,
     VIEW_INTERNAL_LINK_ID_ATTRIBUTE,
     MODEL_INTERNAL_LINK_ID_ATTRIBUTE,
-    CLASS_HIGHLIGHT,
-    COMMAND_LINK,
-    COMMAND_UNLINK } from './constants';
+    CLASS_HIGHLIGHT } from './constants';
 
 /**
  * The link engine feature.
@@ -72,10 +68,6 @@ export default class InternalLinkEditing extends Plugin {
                     value: viewElement => viewElement.getAttribute(VIEW_INTERNAL_LINK_ID_ATTRIBUTE)
                 }
             }));
-
-        // Create linking commands.
-        editor.commands.add(COMMAND_LINK, new LinkCommand(editor));
-        editor.commands.add(COMMAND_UNLINK, new UnlinkCommand(editor));
 
         // Enable two-step caret movement for `internalLinkId` attribute.
         bindTwoStepCaretToAttribute(editor.editing.view, editor.model, this, MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
