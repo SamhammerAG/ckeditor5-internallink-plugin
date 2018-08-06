@@ -13,6 +13,8 @@ import { createLinkElement } from './utils';
 import bindTwoStepCaretToAttribute from '@ckeditor/ckeditor5-engine/src/utils/bindtwostepcarettoattribute';
 import findLinkRange from './findlinkrange';
 
+import '../theme/editing.css';
+
 import {
     VIEW_INTERNAL_LINK_TAG,
     VIEW_INTERNAL_LINK_ID_ATTRIBUTE,
