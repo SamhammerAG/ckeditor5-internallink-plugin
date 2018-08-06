@@ -50,6 +50,7 @@ export default class InternalLinkCommand extends Command {
         const model = this.editor.model;
         const doc = model.document;
 
+        // Checks whether the attribute is allowed in selection (returns true if the attribute is not existing)
         this.isEnabled = model.schema.checkAttributeInSelection(doc.selection, MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
 
         const newValue = doc.selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE);

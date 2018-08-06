@@ -27,9 +27,9 @@ export default class InternalLinkDataContext {
 
     /**
      * Gets the autocomplete suggestions
-     * @param {string} searchTerm The term that is entered into our searchbox
+     * @param {string} searchTerm The term that is entered into our search box
      */
-    autocomplete(searchTerm) {
+    getAutocompleteItems(searchTerm) {
         const isTestMode = this.editor.config.get(CONFIG_TEST_MODE);
         const templateUrl = this.editor.config.get(CONFIG_BASE_URL) + this.editor.config.get(CONFIG_AUTOCOMPLETE_URL);
         const autocompleteUrl = replacePlaceholderInUrl(templateUrl, URL_PLACEHOLDER_SEARCH_TERM, searchTerm);
