@@ -6,6 +6,7 @@ import Command from '@ckeditor/ckeditor5-core/src/command';
 import Range from '@ckeditor/ckeditor5-engine/src/model/range';
 import findLinkRange from '../findlinkrange';
 import toMap from '@ckeditor/ckeditor5-utils/src/tomap';
+import InternalLinkDataContext from '../internalLinkDataContext';
 
 import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE } from '../constants';
 
@@ -25,14 +26,38 @@ export default class InternalLinkCommand extends Command {
      */
 
     /**
+     * The title of the internal link if the start of the selection is located in a node with this attribute.
+     *
+     * @observable
+     * @readonly
+     * @member {Object|undefined} #title
+     */
+
+    /**
+     * @inheritDoc
+     */
+    constructor(editor) {
+        super(editor);
+
+        // Make the title observable
+        this.set('title', undefined);
+    }
+
+    /**
      * @inheritDoc
      */
     refresh() {
         const model = this.editor.model;
         const doc = model.document;
 
-        this.value = doc.selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
         this.isEnabled = model.schema.checkAttributeInSelection(doc.selection, MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
+
+        const newValue = doc.selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
+
+        if (this.value !== newValue) {
+            this.value = newValue;
+            this.title = this.value ? new InternalLinkDataContext(this.editor).getTitleById(this.value) : '';
+        }
     }
 
     /**
@@ -50,8 +75,9 @@ export default class InternalLinkCommand extends Command {
      *
      * @fires execute
      * @param {String} internalLinkId Link destination.
+     * @param {String} internalLinkText Link text that is rendered if there is no selection otherwise the selected text will be rendered.
      */
-    execute(internalLinkId) {
+    execute(internalLinkId, internalLinkText) {
         const model = this.editor.model;
         const selection = model.document.selection;
 
@@ -78,7 +104,7 @@ export default class InternalLinkCommand extends Command {
 
                     attributes.set(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId);
 
-                    const node = writer.createText(internalLinkId, attributes);
+                    const node = writer.createText(internalLinkText, attributes);
 
                     writer.insert(node, position);
 
