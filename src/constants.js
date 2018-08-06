@@ -10,6 +10,12 @@ export const COMMAND_LINK = 'internalLink';
 
 export const COMMAND_UNLINK = 'internalUnlink';
 
+export const PROPERTY_INTERNAL_LINK_ID = 'internallinkid';
+
+export const PROPERTY_TITLE = 'title';
+
+export const PROPERTY_VALUE = 'value';
+
 export const BUTTON_LINK = 'internalLink';
 
 export const CONFIG_TEST_MODE = 'internallink.testmode';

@@ -22,6 +22,10 @@ import delayKeyUp from 'delay-keyup';
 import Awesomplete from 'awesomplete';
 import InternalLinkDataContext from '../internalLinkDataContext';
 
+import { PROPERTY_INTERNAL_LINK_ID,
+    PROPERTY_TITLE
+} from '../constants';
+
 import '../../theme/internallinkform.css';
 
 /**
@@ -40,6 +44,22 @@ export default class InternalLinkFormView extends View {
         super(editor.locale);
 
         const t = this.locale.t;
+
+        /**
+         * Value of the "internalLinkId" attribute of the link to use in the {@link #previewButtonView}.
+         *
+         * @observable
+         * @member {String}
+         */
+        this.set(PROPERTY_INTERNAL_LINK_ID);
+
+        /**
+         * Value of the "title" attribute of the link to use in the {@link #previewButtonView}.
+         *
+         * @observable
+         * @member {String}
+         */
+        this.set(PROPERTY_TITLE);
 
         /**
          * Used for accessing web services to load the link data.
@@ -180,6 +200,7 @@ export default class InternalLinkFormView extends View {
 
         const labeledInput = new LabeledInputView(this.locale, InputTextView);
         labeledInput.inputView.placeholder = t('Enter title or id');
+        labeledInput.bind('value').to(this, PROPERTY_INTERNAL_LINK_ID);
 
         return labeledInput;
     }
@@ -192,7 +213,7 @@ export default class InternalLinkFormView extends View {
      */
     createTitleLabel() {
         const label = new LabelView(this.locale);
-        label.text = '';
+        label.bind('text').to(this, PROPERTY_TITLE);
         return label;
     }
 

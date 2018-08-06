@@ -60,6 +60,8 @@ export default class InternalLinkEditing extends Plugin {
                 view: {
                     name: VIEW_INTERNAL_LINK_TAG,
                     attributes: {
+                        // This is important to ensure that the internal links are not
+                        // removed if text with an internal link is pasted to ckeditor
                         internallinkid: true
                     }
                 },

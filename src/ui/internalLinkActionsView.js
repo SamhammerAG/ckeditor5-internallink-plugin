@@ -16,7 +16,11 @@ import { replacePlaceholderInUrl } from '../utils';
 import unlinkIcon from '../../theme/icons/unlink.svg';
 import pencilIcon from '@ckeditor/ckeditor5-core/theme/icons/pencil.svg';
 
-import { VIEW_INTERNAL_LINK_ID_ATTRIBUTE, CONFIG_PREVIEW_URL, URL_PLACEHOLDER_ID } from '../constants';
+import { PROPERTY_INTERNAL_LINK_ID,
+    PROPERTY_TITLE,
+    CONFIG_PREVIEW_URL,
+    URL_PLACEHOLDER_ID
+} from '../constants';
 
 /**
  * The link actions view class. This view displays link preview, allows
@@ -34,6 +38,22 @@ export default class InternalLinkActionsView extends View {
 
         const t = this.locale.t;
         this.editor = editor;
+
+        /**
+         * Value of the "internalLinkId" attribute of the link to use in the {@link #previewButtonView}.
+         *
+         * @observable
+         * @member {String}
+         */
+        this.set(PROPERTY_INTERNAL_LINK_ID);
+
+        /**
+         * Value of the "title" attribute of the link to use in the {@link #previewButtonView}.
+         *
+         * @observable
+         * @member {String}
+         */
+        this.set(PROPERTY_TITLE);
 
         /**
          * A collection of views which can be focused in the form.
@@ -91,22 +111,6 @@ export default class InternalLinkActionsView extends View {
          */
         this.editButtonView = createButton(t('Edit link'), pencilIcon, this.locale);
         this.editButtonView.delegate('execute').to(this, 'edit');
-
-        /**
-         * Value of the "internalLinkId" attribute of the link to use in the {@link #previewButtonView}.
-         *
-         * @observable
-         * @member {String}
-         */
-        this.set(VIEW_INTERNAL_LINK_ID_ATTRIBUTE);
-
-        /**
-         * Value of the "title" attribute of the link to use in the {@link #previewButtonView}.
-         *
-         * @observable
-         * @member {String}
-         */
-        this.set('title');
 
         this.setTemplate({
             tag: 'div',
@@ -176,17 +180,16 @@ export default class InternalLinkActionsView extends View {
                     'ck',
                     'ck-link-actions__preview'
                 ],
-                internalLinkId: bind.to(VIEW_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId => !!internalLinkId),
-                href: bind.to(VIEW_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId => { return this.createPreviewUrl(internalLinkId); }),
+                href: bind.to(PROPERTY_INTERNAL_LINK_ID, internalLinkId => { return this.createPreviewUrl(internalLinkId); }),
                 target: '_blank'
             }
         });
 
-        button.bind('label').to(this, 'title', internalLinkId => {
-            return internalLinkId || t('This link is invalid');
+        button.bind('label').to(this, PROPERTY_TITLE, linkTitle => {
+            return linkTitle || t('This link is invalid');
         });
 
-        button.bind('isEnabled').to(this, VIEW_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId => !!internalLinkId);
+        button.bind('isEnabled').to(this, PROPERTY_INTERNAL_LINK_ID, internalLinkId => !!internalLinkId);
 
         button.template.tag = 'a';
         button.template.eventListeners = {};

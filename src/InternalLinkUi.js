@@ -18,7 +18,9 @@ import { createButton } from './ui/uiUtils';
 import { isLinkElement } from './utils';
 
 import {
-    VIEW_INTERNAL_LINK_ID_ATTRIBUTE,
+    PROPERTY_INTERNAL_LINK_ID,
+    PROPERTY_TITLE,
+    PROPERTY_VALUE,
     COMMAND_LINK,
     COMMAND_UNLINK,
     BUTTON_LINK } from './constants';
@@ -233,8 +235,8 @@ export default class InternalLinkUi extends Plugin {
         const formView = new InternalLinkFormView(editor);
         const linkCommand = editor.commands.get(COMMAND_LINK);
 
-        formView.idInputView.bind('value').to(linkCommand, 'value');
-        formView.titleLabelView.bind('text').to(linkCommand, 'title');
+        formView.bind(PROPERTY_INTERNAL_LINK_ID).to(linkCommand, PROPERTY_VALUE);
+        formView.bind(PROPERTY_TITLE).to(linkCommand, PROPERTY_TITLE);
 
         // Form elements should be read-only when corresponding commands are disabled.
         formView.idInputView.bind('isReadOnly').to(linkCommand, 'isEnabled', value => !value);
@@ -275,13 +277,13 @@ export default class InternalLinkUi extends Plugin {
         const linkCommand = editor.commands.get(COMMAND_LINK);
         const unlinkCommand = editor.commands.get(COMMAND_UNLINK);
 
-        actionsView.bind(VIEW_INTERNAL_LINK_ID_ATTRIBUTE).to(linkCommand, 'value');
-        actionsView.bind('title').to(linkCommand, 'title');
+        actionsView.bind(PROPERTY_INTERNAL_LINK_ID).to(linkCommand, PROPERTY_VALUE);
+        actionsView.bind(PROPERTY_TITLE).to(linkCommand, PROPERTY_TITLE);
 
-        actionsView.editButtonView.bind('isEnabled').to(linkCommand);
-        actionsView.unlinkButtonView.bind('isEnabled').to(unlinkCommand);
+        actionsView.editButtonView.bind('isEnabled').to(linkCommand, 'isEnabled');
+        actionsView.unlinkButtonView.bind('isEnabled').to(unlinkCommand, 'isEnabled');
 
-        // Execute unlink command after clicking on the "Edit" button.
+        // Execute action to show the form after clicking on the "Edit" button.
         this.listenTo(actionsView, 'edit', () => {
             this.addFormView();
         });
