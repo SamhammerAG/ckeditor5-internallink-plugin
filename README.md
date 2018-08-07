@@ -59,3 +59,7 @@ We are using axios to do HTTP-GET requests.
 ### Get title response
 
 Returns a string with the title
+
+## License
+
+ckeditor5-internallink-plugin is released under the MIT License. See LICENSE file for details.
