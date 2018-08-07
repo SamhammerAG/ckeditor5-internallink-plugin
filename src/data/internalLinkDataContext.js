@@ -2,7 +2,7 @@
  * @module InternalLink/InternalLinkDataContext
  */
 
-// import axios from 'axios';
+import axios from 'axios';
 
 import { replacePlaceholderInUrl } from '../util/utils';
 
@@ -37,7 +37,7 @@ export default class InternalLinkDataContext {
             return this.getAutocompleteTestData(searchTerm);
         }
 
-        console.log(autocompleteUrl); // eslint-disable-line
+        return axios.get(autocompleteUrl);
     }
 
     /**
@@ -53,7 +53,7 @@ export default class InternalLinkDataContext {
             return this.getTitleTestData(itemId);
         }
 
-        console.log(titleUrl); // eslint-disable-line
+        return axios.get(titleUrl);
     }
 
     /**
@@ -61,10 +61,15 @@ export default class InternalLinkDataContext {
      * @param {string} searchTerm The term that is entered into our searchbox
      */
     getAutocompleteTestData(searchTerm) {
-        return [
-            { label: 'SearchTerm: ' + searchTerm, value: '1' },
-            { label: 'Vuejs', value: '1001' },
-            { label: 'Javascript', value: '500' }];
+        const testData = {
+            data: [
+                { label: 'SearchTerm: ' + searchTerm, value: '1' },
+                { label: 'Vuejs', value: '1001' },
+                { label: 'Javascript', value: '500' }
+            ]
+        };
+
+        return Promise.resolve(testData);
     }
 
     /**
@@ -72,13 +77,15 @@ export default class InternalLinkDataContext {
      * @param {string} itemId The id of an item you want to load
      */
     getTitleTestData(itemId) {
+        let title = 'Item: ' + itemId;
+
         if (itemId == '500') {
-            return 'Javascript';
+            title = 'Javascript';
         } else if (itemId == '1001') {
-            return 'Vuejs';
-        } else {
-            return 'Item: ' + itemId;
+            title = 'Vuejs';
         }
+
+        return Promise.resolve({ data: title });
     }
 
 }

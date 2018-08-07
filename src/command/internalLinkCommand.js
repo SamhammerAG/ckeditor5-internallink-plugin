@@ -57,7 +57,15 @@ export default class InternalLinkCommand extends Command {
 
         if (this.value !== newValue) {
             this.value = newValue;
-            this.title = this.value ? new InternalLinkDataContext(this.editor).getTitleById(this.value) : '';
+
+            if (this.value) {
+                new InternalLinkDataContext(this.editor).getTitleById(this.value)
+                    .then(response => {
+                        this.title = response.data;
+                    });
+            } else {
+                this.title = '';
+            }
         }
     }
 
