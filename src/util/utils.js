@@ -2,7 +2,7 @@
  * @module link/utils
  */
 
-import { VIEW_INTERNAL_LINK_TAG } from './constants';
+import { VIEW_INTERNAL_LINK_TAG, VIEW_INTERNAL_LINK_ID_ATTRIBUTE } from './constants';
 
 const linkElementSymbol = Symbol('internalLinkElement');
 
@@ -24,7 +24,9 @@ export function isLinkElement(node) {
  */
 export function createLinkElement(internalLinkId, writer) {
     // Priority 5 - https://github.com/ckeditor/ckeditor5-link/issues/121.
-    const linkElement = writer.createAttributeElement(VIEW_INTERNAL_LINK_TAG, { internalLinkId }, { priority: 5 });
+    const linkElement = writer.createAttributeElement(VIEW_INTERNAL_LINK_TAG,
+        { [ VIEW_INTERNAL_LINK_ID_ATTRIBUTE ]: internalLinkId },
+        { priority: 5 });
     writer.setCustomProperty(linkElementSymbol, true, linkElement);
 
     return linkElement;

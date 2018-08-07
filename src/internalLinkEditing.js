@@ -58,7 +58,7 @@ export default class InternalLinkEditing extends Plugin {
                     attributes: {
                         // This is important to ensure that the internal links are not
                         // removed if text with an internal link is pasted to ckeditor
-                        internallinkid: true
+                        [ VIEW_INTERNAL_LINK_ID_ATTRIBUTE ]: true
                     }
                 },
                 model: {
