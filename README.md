@@ -20,6 +20,14 @@ The HTML-Tags of this plugin are looking as following:
  - Configurable webservice urls to get the required data
  - Test mode to test the plugin without having to implement a webservice
  
+## How to use
+To be able to use this plugin you need a custom build of ckeditor.
+
+Further instructions can be found here:
+https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/installing-plugins.html
+
+e.g.: https://github.com/SamhammerAG/ssp-ckeditor5-build-inline
+
 ## Configuration
 Configuration flags:
 
