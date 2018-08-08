@@ -68,6 +68,17 @@ We are using axios to do HTTP-GET requests.
 
 Returns a string with the title
 
+## How to publish
+
+For publishing an npm account that is referenced to the organization is required.
+
+See the following how to:
+https://docs.npmjs.com/getting-started/publishing-npm-packages
+
+If everything is configured correctly just count up the version number in our package.json and execute the following command:
+
+    npm publish --access public
+
 ## License
 
 ckeditor5-internallink-plugin is released under the MIT License. See LICENSE file for details.
