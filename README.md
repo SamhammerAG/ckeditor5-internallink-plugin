@@ -26,6 +26,11 @@ To be able to use this plugin you need a custom build of ckeditor.
 Further instructions can be found here:
 https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/installing-plugins.html
 
+Add the NPM-Package (https://www.npmjs.com/package/@samhammer/ckeditor5-internallink-plugin) by running one of the following commands (depending on your build environment):
+
+    npm i @samhammer/ckeditor5-internallink-plugin
+    yarn add @samhammer/ckeditor5-internallink-plugin
+
 e.g.: https://github.com/SamhammerAG/ssp-ckeditor5-build-inline
 
 ## Configuration
