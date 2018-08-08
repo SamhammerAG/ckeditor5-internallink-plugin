@@ -8,7 +8,7 @@ This plugin has the same features as the default link plugin except that it does
 
 The HTML-Tags of this plugin are looking as following:
 
-```html
+```
 <internallink internallinkid="123">some text</internallink>
 ```
   
@@ -71,7 +71,7 @@ We are using axios to do HTTP-GET requests.
 
 ### Autocomplete response
 
-```json
+```
 [
     { label:  'Text1', value:  '1' },
     { label:  'Text2', value:  '2' }
