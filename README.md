@@ -1,4 +1,5 @@
 
+
 # ckeditor5-internallink-plugin
 A generic ckeditor plugin to create custom html tags containing an identifier to a referenced item.
 
@@ -7,7 +8,9 @@ This plugin has the same features as the default link plugin except that it does
 
 The HTML-Tags of this plugin are looking as following:
 
-    <internallink internallinkid="123">some text</internallink>
+```html
+<internallink internallinkid="123">some text</internallink>
+```
   
 ## Features
 
@@ -28,8 +31,10 @@ https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/installing-
 
 Add the NPM-Package (https://www.npmjs.com/package/@samhammer/ckeditor5-internallink-plugin) by running one of the following commands (depending on your build environment):
 
-    npm i @samhammer/ckeditor5-internallink-plugin
-    yarn add @samhammer/ckeditor5-internallink-plugin
+```bash
+npm i @samhammer/ckeditor5-internallink-plugin
+yarn add @samhammer/ckeditor5-internallink-plugin
+```
 
 e.g.: https://github.com/SamhammerAG/ssp-ckeditor5-build-inline
 
@@ -45,7 +50,8 @@ Configuration flags:
 
 Example:
 
-    InlineEditor
+```js
+InlineEditor
 	.create( editorElement, {
 		internallink: {
 			testmode: false,
@@ -56,6 +62,7 @@ Example:
 	} )
 	.then( ... )
 	.catch( ... );
+```
 
 ## Webservice response data format
 
@@ -64,10 +71,12 @@ We are using axios to do HTTP-GET requests.
 
 ### Autocomplete response
 
-    [
-	    { label:  'Text1', value:  '1' },
-	    { label:  'Text2', value:  '2' }
-	]
+```json
+[
+    { label:  'Text1', value:  '1' },
+    { label:  'Text2', value:  '2' }
+]
+```
 
 ### Get title response
 
@@ -82,8 +91,11 @@ https://docs.npmjs.com/getting-started/publishing-npm-packages
 
 If everything is configured correctly just count up the version number in our package.json and execute the following command:
 
-    npm publish --access public
+```bash
+npm publish --access public
+```
 
 ## License
 
 ckeditor5-internallink-plugin is released under the MIT License. See LICENSE file for details.
+
