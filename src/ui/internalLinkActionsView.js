@@ -22,6 +22,8 @@ import { PROPERTY_INTERNAL_LINK_ID,
     URL_PLACEHOLDER_ID
 } from '../util/constants';
 
+import '../../theme/internallinkactions.css';
+
 /**
  * The link actions view class. This view displays link preview, allows
  * unlinking or editing the link.
