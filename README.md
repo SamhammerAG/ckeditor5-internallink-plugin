@@ -38,6 +38,8 @@ npm i @samhammer/ckeditor5-internallink-plugin
 
 e.g.: https://github.com/SamhammerAG/ssp-ckeditor5-build-inline
 
+Note: We prefer yarn so it is only testet with this build tool.
+
 ## Configuration
 Configuration flags:
 
@@ -87,7 +89,9 @@ Returns a string with the title
 For publishing an npm account that is referenced to the organization is required.
 
 See the following how to:
+
 https://yarnpkg.com/en/docs/publishing-a-package
+
 https://docs.npmjs.com/getting-started/publishing-npm-packages
 
 If everything is configured correctly just count up the version number in our package.json and execute the following command:
