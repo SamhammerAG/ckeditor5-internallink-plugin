@@ -32,8 +32,8 @@ https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/installing-
 Add the NPM-Package (https://www.npmjs.com/package/@samhammer/ckeditor5-internallink-plugin) by running one of the following commands (depending on your build environment):
 
 ```bash
-npm i @samhammer/ckeditor5-internallink-plugin
 yarn add @samhammer/ckeditor5-internallink-plugin
+npm i @samhammer/ckeditor5-internallink-plugin
 ```
 
 e.g.: https://github.com/SamhammerAG/ssp-ckeditor5-build-inline
@@ -87,11 +87,13 @@ Returns a string with the title
 For publishing an npm account that is referenced to the organization is required.
 
 See the following how to:
+https://yarnpkg.com/en/docs/publishing-a-package
 https://docs.npmjs.com/getting-started/publishing-npm-packages
 
 If everything is configured correctly just count up the version number in our package.json and execute the following command:
 
 ```bash
+yarn publish
 npm publish --access public
 ```
 
