@@ -94,7 +94,7 @@ https://yarnpkg.com/en/docs/publishing-a-package
 
 https://docs.npmjs.com/getting-started/publishing-npm-packages
 
-If everything is configured correctly just count up the version number in our package.json and execute the following command:
+If everything is configured correctly just count up the version number in our package.json and execute one of the following commands:
 
 ```bash
 yarn publish
