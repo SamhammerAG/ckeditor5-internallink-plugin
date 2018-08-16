@@ -91,12 +91,7 @@ export default class InternalLinkUi extends Plugin {
             button.bind('isEnabled').to(linkCommand, 'isEnabled');
 
             // Show the panel on button click.
-            this.listenTo(button, 'execute', () => {
-                this.showUi();
-
-                // Always set the focus back to the editing view --> this is a best practice of ckeditor
-                this.editor.editing.view.focus();
-            });
+            this.listenTo(button, 'execute', () => this.showUi());
 
             return button;
         });
