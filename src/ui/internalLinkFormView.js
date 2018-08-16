@@ -88,6 +88,14 @@ export default class InternalLinkFormView extends View {
         this.focusTracker = new FocusTracker();
 
         /**
+         * An instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
+         *
+         * @readonly
+         * @member {module:utils/keystrokehandler~KeystrokeHandler}
+         */
+        this.keystrokes = new KeystrokeHandler();
+
+        /**
          * Helps cycling over {@link #focusables} in the form.
          *
          * @readonly
@@ -95,14 +103,6 @@ export default class InternalLinkFormView extends View {
          * @member {module:ui/focuscycler~FocusCycler}
          */
         this.focusCycler = createFocusCycler(this.focusables, this.focusTracker, this.keystrokes);
-
-        /**
-         * An instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
-         *
-         * @readonly
-         * @member {module:utils/keystrokehandler~KeystrokeHandler}
-         */
-        this.keystrokes = new KeystrokeHandler();
 
         /**
          * The id input view.
