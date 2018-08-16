@@ -1,3 +1,5 @@
+/* global setTimeout clearTimeout */
+
 /**
  * @module internalLink/ui/InternalLinkFormView
  */
@@ -17,12 +19,12 @@ import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
 import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
 
 import { createButton, createFocusCycler, registerFocusableViews } from './uiutils';
-import delayKeyUp from 'delay-keyup';
 
 import Awesomplete from 'awesomplete';
 import InternalLinkDataContext from '../data/internalLinkDataContext';
 
-import { PROPERTY_INTERNAL_LINK_ID,
+import {
+    PROPERTY_INTERNAL_LINK_ID,
     PROPERTY_TITLE
 } from '../util/constants';
 
@@ -230,15 +232,33 @@ export default class InternalLinkFormView extends View {
             }
         });
 
-        delayKeyUp(
-            this.idInputView.inputView.element,
-            this.loadAutocompleteData.bind(this),
-            500);
+        this.registerAutocompleteKeyUpEvent();
 
         this.idInputView.inputView.element.addEventListener('awesomplete-selectcomplete', function(event) {
             this.titleLabelView.text = event.text.label;
         }.bind(this));
 
+    }
+
+    registerAutocompleteKeyUpEvent() {
+        let timeout = null;
+
+        this.idInputView.inputView.element.onkeyup = function(event) {
+
+            if (event.key == 'ArrowDown'
+                || event.key == 'ArrowUp'
+                || event.key == 'ArrowLeft'
+                || event.key == 'ArrowRight'
+                || event.key == 'Enter'
+                || event.key == 'Escape'
+            ) {
+                return;
+            }
+
+            clearTimeout(timeout);
+            timeout = setTimeout(this.loadAutocompleteData().bind(this), 500);
+
+        }.bind(this);
     }
 
     loadAutocompleteData() {
