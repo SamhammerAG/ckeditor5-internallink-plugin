@@ -4,5 +4,5 @@
 	"Edit link": "The edit button in edit area.",
 	"Open link in new tab": "Tooltip on the link in edit area.",
 	"This link is invalid": "Label of an invalid link in edit area.",
-	"Enter title or id": "Placeholder of the autocomplete textbox to find an internal item."
+	"Enter title": "Placeholder of the autocomplete textbox to find an internal item."
 }

@@ -25,5 +25,5 @@ msgid "This link is invalid"
 msgstr "Dieser Link ist ungültig"
 
 msgctxt "Placeholder of the autocomplete textbox to find an internal item."
-msgid "Enter title or id"
-msgstr "Id oder Titel eingeben"
+msgid "Enter title"
+msgstr "Titel eingeben"

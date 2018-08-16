@@ -199,7 +199,7 @@ export default class InternalLinkFormView extends View {
         const t = this.locale.t;
 
         const labeledInput = new LabeledInputView(this.locale, InputTextView);
-        labeledInput.inputView.placeholder = t('Enter title or id');
+        labeledInput.inputView.placeholder = t('Enter title');
         labeledInput.bind('value').to(this, PROPERTY_INTERNAL_LINK_ID);
 
         return labeledInput;
