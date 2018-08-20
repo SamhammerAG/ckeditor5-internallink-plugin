@@ -73,6 +73,7 @@
         }
 
             & .awesomplete mark {
+				vertical-align: baseline;
                 background: hsl(65, 100%, 50%);
             }
 }
