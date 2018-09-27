@@ -257,7 +257,7 @@ export default class InternalLinkFormView extends View {
             }
 
             clearTimeout(timeout);
-            timeout = setTimeout(this.loadAutocompleteData().bind(this), 500);
+            timeout = setTimeout(this.loadAutocompleteData(), 500);
 
         }.bind(this);
     }
