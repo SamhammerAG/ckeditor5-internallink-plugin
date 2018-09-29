@@ -2,15 +2,20 @@
 
 # ckeditor5-internallink-plugin
 A generic ckeditor plugin to create custom html tags containing an identifier to a referenced item.
+The referencable items are found by an autocomplete input.
 
 ## Overview
 This plugin has the same features as the default link plugin except that it does not create regular link tags.
+
+![alt text](https://raw.githubusercontent.com/SamhammerAG/ckeditor5-internallink-plugin/master/README_Autocomplete.png)
 
 The HTML-Tags of this plugin are looking as following:
 
 ```
 <internallink internallinkid="123">some text</internallink>
 ```
+
+![alt text](https://raw.githubusercontent.com/SamhammerAG/ckeditor5-internallink-plugin/master/README_Preview.png)
   
 ## Features
 
