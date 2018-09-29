@@ -240,8 +240,8 @@ export default class InternalLinkUi extends Plugin {
         this.listenTo(formView, 'submit', () => {
             editor.execute(
                 COMMAND_LINK,
-                formView.idInputView.inputView.element.value,
-                formView.titleLabelView.text);
+                formView.internallinkid,
+                formView.title);
 
             this.removeFormView();
         });
@@ -399,8 +399,8 @@ export default class InternalLinkUi extends Plugin {
         // clicked the same link), they would see the old value instead of the actual value of the command.
         // https://github.com/ckeditor/ckeditor5-link/issues/78
         // https://github.com/ckeditor/ckeditor5-link/issues/123
-        this.formView.idInputView.inputView.element.value = linkCommand.value || '';
-        this.formView.titleLabelView.text = linkCommand.title || '';
+        this.formView.title = linkCommand.title || '';
+        this.formView.internallinkid = linkCommand.value || '';
     }
 
     /**

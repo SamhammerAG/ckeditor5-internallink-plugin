@@ -7,7 +7,6 @@
 import View from '@ckeditor/ckeditor5-ui/src/view';
 import ViewCollection from '@ckeditor/ckeditor5-ui/src/viewcollection';
 
-import LabelView from '@ckeditor/ckeditor5-ui/src/label/labelview';
 import LabeledInputView from '@ckeditor/ckeditor5-ui/src/labeledinput/labeledinputview';
 import InputTextView from '@ckeditor/ckeditor5-ui/src/inputtext/inputtextview';
 
@@ -114,20 +113,13 @@ export default class InternalLinkFormView extends View {
         this.idInputView = this.createIdInput();
 
         /**
-         * The description to a selected id.
-         *
-         * @member {module:ui/label/labelview~LabelView}
-         */
-        this.titleLabelView = this.createTitleLabel();
-
-        /**
          * The Save button view.
          *
          * @member {module:ui/button/buttonview~ButtonView}
          */
         this.saveButtonView = createButton(t('Save'), checkIcon, this.locale, 'ck-button-save');
         this.saveButtonView.type = 'submit';
-        this.saveButtonView.bind('isEnabled').to(this.titleLabelView, 'text');
+        this.saveButtonView.bind('isEnabled').to(this, PROPERTY_INTERNAL_LINK_ID);
 
         /**
          * The Cancel button view.
@@ -153,8 +145,7 @@ export default class InternalLinkFormView extends View {
             children: [
                 this.idInputView,
                 this.saveButtonView,
-                this.cancelButtonView,
-                this.titleLabelView
+                this.cancelButtonView
             ]
         });
     }
@@ -174,8 +165,7 @@ export default class InternalLinkFormView extends View {
         const childViews = [
             this.idInputView,
             this.saveButtonView,
-            this.cancelButtonView,
-            this.titleLabelView
+            this.cancelButtonView
         ];
 
         // The two below commands are called this way in every plugin.
@@ -202,21 +192,9 @@ export default class InternalLinkFormView extends View {
 
         const labeledInput = new LabeledInputView(this.locale, InputTextView);
         labeledInput.inputView.placeholder = t('Enter title');
-        labeledInput.bind('value').to(this, PROPERTY_INTERNAL_LINK_ID);
+        labeledInput.bind('value').to(this, PROPERTY_TITLE);
 
         return labeledInput;
-    }
-
-    /**
-     * Creates the label to a selected id.
-     *
-     * @private
-     * @returns {module:ui/label/labelview~LabelView} Labele view instance.
-     */
-    createTitleLabel() {
-        const label = new LabelView(this.locale);
-        label.bind('text').to(this, PROPERTY_TITLE);
-        return label;
     }
 
     initAutocomplete() {
@@ -235,7 +213,8 @@ export default class InternalLinkFormView extends View {
         this.registerAutocompleteKeyUpEvent();
 
         this.idInputView.inputView.element.addEventListener('awesomplete-selectcomplete', function(event) {
-            this.titleLabelView.text = event.text.label;
+            this.set(PROPERTY_INTERNAL_LINK_ID, event.text.value);
+            this.set(PROPERTY_TITLE, event.text.label);
         }.bind(this));
 
     }
@@ -263,7 +242,7 @@ export default class InternalLinkFormView extends View {
     }
 
     loadAutocompleteData() {
-        this.titleLabelView.text = '';
+        this.set(PROPERTY_INTERNAL_LINK_ID, '');
         this.dataContext.getAutocompleteItems(this.idInputView.inputView.element.value)
             .then(response => {
                 this.autocomplete.list = response.data;
