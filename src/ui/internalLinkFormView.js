@@ -246,6 +246,9 @@ export default class InternalLinkFormView extends View {
         this.dataContext.getAutocompleteItems(this.idInputView.inputView.element.value)
             .then(response => {
                 this.autocomplete.list = response.data;
+            })
+            .catch(() => {
+                this.autocomplete.list = [];
             });
     }
 

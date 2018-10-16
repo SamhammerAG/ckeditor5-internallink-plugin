@@ -3,6 +3,7 @@
 	"Unlink": "The unlink button in edit area.",
 	"Edit link": "The edit button in edit area.",
 	"Open link in new tab": "Tooltip on the link in edit area.",
-	"This link is invalid": "Label of an invalid link in edit area.",
+  "This link is invalid": "Label of an invalid link in edit area.",
+  "Error requesting title": "Label of an internal link if the title could not be requested.",
 	"Enter title": "Placeholder of the autocomplete textbox to find an internal item."
 }

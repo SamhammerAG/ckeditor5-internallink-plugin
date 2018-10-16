@@ -49,6 +49,7 @@ export default class InternalLinkCommand extends Command {
     refresh() {
         const model = this.editor.model;
         const doc = model.document;
+        const t = this.editor.locale && this.editor.locale.t;
 
         // Checks whether the attribute is allowed in selection (returns true if the attribute is not existing)
         this.isEnabled = model.schema.checkAttributeInSelection(doc.selection, MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
@@ -62,6 +63,9 @@ export default class InternalLinkCommand extends Command {
                 new InternalLinkDataContext(this.editor).getTitleById(this.value)
                     .then(response => {
                         this.title = response.data;
+                    })
+                    .catch(() => {
+                        this.title = t('Error requesting title');
                     });
             } else {
                 this.title = '';

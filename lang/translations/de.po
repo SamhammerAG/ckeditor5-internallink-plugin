@@ -24,6 +24,10 @@ msgctxt "Label of an invalid link in edit area."
 msgid "This link is invalid"
 msgstr "Dieser Link ist ungültig"
 
+msgctxt "Label of an internal link if the title could not be requested."
+msgid "Error requesting title"
+msgstr "Fehler beim Abrufen des Titels"
+
 msgctxt "Placeholder of the autocomplete textbox to find an internal item."
 msgid "Enter title"
 msgstr "Titel eingeben"
