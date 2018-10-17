@@ -234,7 +234,7 @@ export default class InternalLinkUi extends Plugin {
         formView.bind(PROPERTY_TITLE).to(linkCommand, PROPERTY_TITLE);
 
         // Form elements should be read-only when corresponding commands are disabled.
-        formView.idInputView.bind('isReadOnly').to(linkCommand, 'isEnabled', value => !value);
+        formView.titleInputView.bind('isReadOnly').to(linkCommand, 'isEnabled', value => !value);
 
         // Execute link command after clicking the "Save" button.
         this.listenTo(formView, 'submit', () => {
@@ -391,10 +391,10 @@ export default class InternalLinkUi extends Plugin {
             position: this.getBalloonPositionData()
         });
 
-        this.formView.idInputView.select();
+        this.formView.titleInputView.select();
 
         // Make sure that each time the panel shows up, the URL field remains in sync with the value of
-        // the command. If the user typed in the input, then canceled the balloon (`idInputView#value` stays
+        // the command. If the user typed in the input, then canceled the balloon (`titleInputView#value` stays
         // unaltered) and re-opened it without changing the value of the link command (e.g. because they
         // clicked the same link), they would see the old value instead of the actual value of the command.
         // https://github.com/ckeditor/ckeditor5-link/issues/78

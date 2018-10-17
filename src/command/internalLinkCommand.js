@@ -8,7 +8,7 @@ import findLinkRange from '../util/findlinkrange';
 import toMap from '@ckeditor/ckeditor5-utils/src/tomap';
 import InternalLinkDataContext from '../data/internalLinkDataContext';
 
-import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE } from '../util/constants';
+import { MODEL_INTERNAL_LINK_ID_ATTRIBUTE, PROPERTY_TITLE } from '../util/constants';
 
 /**
  * The internal link command. It is used by the {@link module:internalLink/internalLink~internalLink internal link feature}.
@@ -40,7 +40,7 @@ export default class InternalLinkCommand extends Command {
         super(editor);
 
         // Make the title observable
-        this.set('title', undefined);
+        this.set(PROPERTY_TITLE, undefined);
     }
 
     /**

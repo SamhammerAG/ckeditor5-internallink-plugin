@@ -110,7 +110,7 @@ export default class InternalLinkFormView extends View {
          *
          * @member {module:ui/labeledinput/labeledinputview~LabeledInputView}
          */
-        this.idInputView = this.createIdInput();
+        this.titleInputView = this.createTitleInput();
 
         /**
          * The Save button view.
@@ -143,7 +143,7 @@ export default class InternalLinkFormView extends View {
             },
 
             children: [
-                this.idInputView,
+                this.titleInputView,
                 this.saveButtonView,
                 this.cancelButtonView
             ]
@@ -163,7 +163,7 @@ export default class InternalLinkFormView extends View {
         });
 
         const childViews = [
-            this.idInputView,
+            this.titleInputView,
             this.saveButtonView,
             this.cancelButtonView
         ];
@@ -182,12 +182,12 @@ export default class InternalLinkFormView extends View {
     }
 
     /**
-     * Creates a labeled input view to input the id.
+     * Creates a labeled input view to input the title.
      *
      * @private
      * @returns {module:ui/labeledinput/labeledinputview~LabeledInputView} Labeled input view instance.
      */
-    createIdInput() {
+    createTitleInput() {
         const t = this.locale.t;
 
         const labeledInput = new LabeledInputView(this.locale, InputTextView);
@@ -202,7 +202,7 @@ export default class InternalLinkFormView extends View {
             return;
         }
 
-        this.autocomplete = new Awesomplete(this.idInputView.inputView.element, {
+        this.autocomplete = new Awesomplete(this.titleInputView.inputView.element, {
             list: [],
             filter() {
                 // Dont filter client side. The web service returns the data that should be shown only.
@@ -212,7 +212,7 @@ export default class InternalLinkFormView extends View {
 
         this.registerAutocompleteKeyUpEvent();
 
-        this.idInputView.inputView.element.addEventListener('awesomplete-selectcomplete', function(event) {
+        this.titleInputView.inputView.element.addEventListener('awesomplete-selectcomplete', function(event) {
             this.set(PROPERTY_INTERNAL_LINK_ID, event.text.value);
             this.set(PROPERTY_TITLE, event.text.label);
         }.bind(this));
@@ -222,7 +222,7 @@ export default class InternalLinkFormView extends View {
     registerAutocompleteKeyUpEvent() {
         let timeout = null;
 
-        this.idInputView.inputView.element.onkeyup = function(event) {
+        this.titleInputView.inputView.element.onkeyup = function(event) {
 
             if (event.key == 'ArrowDown'
                 || event.key == 'ArrowUp'
@@ -243,7 +243,7 @@ export default class InternalLinkFormView extends View {
 
     loadAutocompleteData() {
         this.set(PROPERTY_INTERNAL_LINK_ID, '');
-        this.dataContext.getAutocompleteItems(this.idInputView.inputView.element.value)
+        this.dataContext.getAutocompleteItems(this.titleInputView.inputView.element.value)
             .then(response => {
                 this.autocomplete.list = response.data;
             })
