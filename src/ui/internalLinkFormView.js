@@ -207,12 +207,19 @@ export default class InternalLinkFormView extends View {
             filter() {
                 // Dont filter client side. The web service returns the data that should be shown only.
                 return true;
+            },
+            replace() {
+                // Dont replace the value. We are using our binding. See awesomplete-selectcomplete event.
             }
         });
 
         this.registerAutocompleteKeyUpEvent();
 
         this.titleInputView.inputView.element.addEventListener('awesomplete-selectcomplete', function(event) {
+            // Reset the value to ensure that the observables are triggered even if the same value is selected.
+            this.set(PROPERTY_INTERNAL_LINK_ID, '');
+            this.set(PROPERTY_TITLE, '');
+
             this.set(PROPERTY_INTERNAL_LINK_ID, event.text.value);
             this.set(PROPERTY_TITLE, event.text.label);
         }.bind(this));
