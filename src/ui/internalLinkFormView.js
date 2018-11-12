@@ -17,7 +17,7 @@ import KeystrokeHandler from '@ckeditor/ckeditor5-utils/src/keystrokehandler';
 import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
 import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
 
-import { createButton, createFocusCycler, registerFocusableViews } from './uiutils';
+import { createButton, createFocusCycler, registerFocusableViews } from './uiUtils';
 
 import Awesomplete from 'awesomplete';
 import InternalLinkDataContext from '../data/internalLinkDataContext';

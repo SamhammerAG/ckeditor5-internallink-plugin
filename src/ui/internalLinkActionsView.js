@@ -10,7 +10,7 @@ import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 import FocusTracker from '@ckeditor/ckeditor5-utils/src/focustracker';
 import KeystrokeHandler from '@ckeditor/ckeditor5-utils/src/keystrokehandler';
 
-import { createButton, createFocusCycler, registerFocusableViews } from './uiutils';
+import { createButton, createFocusCycler, registerFocusableViews } from './uiUtils';
 import { replacePlaceholderInUrl } from '../util/utils';
 
 import unlinkIcon from '../../theme/icons/unlink.svg';
