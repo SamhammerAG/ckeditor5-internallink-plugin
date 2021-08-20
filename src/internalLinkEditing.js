@@ -3,12 +3,8 @@
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import {
-    downcastAttributeToElement
-} from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
-import { upcastElementToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/upcast-converters';
 import { createLinkElement } from './util/utils';
-import bindTwoStepCaretToAttribute from '@ckeditor/ckeditor5-engine/src/utils/bindtwostepcarettoattribute';
+import twostepcaretmovement from '@ckeditor/ckeditor5-typing/src/twostepcaretmovement';
 import findLinkRange from './util/findlinkrange';
 
 import '../theme/editing.css';
@@ -39,20 +35,20 @@ export default class InternalLinkEditing extends Plugin {
         editor.model.schema.extend('$text', { allowAttributes: MODEL_INTERNAL_LINK_ID_ATTRIBUTE });
 
         editor.conversion.for('dataDowncast')
-            .add(downcastAttributeToElement({
+            .elementToElement({
                 model: MODEL_INTERNAL_LINK_ID_ATTRIBUTE,
-                view: createLinkElement }));
+                view: createLinkElement });
 
         editor.conversion.for('editingDowncast')
-            .add(downcastAttributeToElement({
+            .elementToElement({
                 model: MODEL_INTERNAL_LINK_ID_ATTRIBUTE,
                 view: (internalLinkId, writer) => {
                     return createLinkElement(internalLinkId, writer);
                 }
-            }));
+            });
 
         editor.conversion.for('upcast')
-            .add(upcastElementToAttribute({
+            .elementToElement({
                 view: {
                     name: VIEW_INTERNAL_LINK_TAG,
                     attributes: {
@@ -67,10 +63,11 @@ export default class InternalLinkEditing extends Plugin {
                     // The html tag attribute
                     value: viewElement => viewElement.getAttribute(VIEW_INTERNAL_LINK_ID_ATTRIBUTE)
                 }
-            }));
+            });
 
         // Enable two-step caret movement for `internalLinkId` attribute.
-        bindTwoStepCaretToAttribute(editor.editing.view, editor.model, this, MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
+        // bindTwoStepCaretToAttribute(editor.editing.view, editor.model, this, MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
+        editor.plugins.get(twostepcaretmovement).registerAttribute();
 
         // Setup highlight over selected link.
         this.setupLinkHighlight();
