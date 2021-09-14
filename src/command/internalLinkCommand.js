@@ -3,7 +3,6 @@
  */
 
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import Range from '@ckeditor/ckeditor5-engine/src/model/range';
 import findLinkRange from '../util/findlinkrange';
 import toMap from '@ckeditor/ckeditor5-utils/src/tomap';
 import InternalLinkDataContext from '../data/internalLinkDataContext';
@@ -102,7 +101,10 @@ export default class InternalLinkCommand extends Command {
                 // When selection is inside text with `internalLinkId` attribute.
                 if (selection.hasAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE)) {
                     // Then update `internalLinkId` value.
-                    const linkRange = findLinkRange(selection.getFirstPosition(), selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE));
+                    const linkRange = findLinkRange(
+                        selection.getFirstPosition(),
+                        selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE),
+                        model);
 
                     writer.setAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId, linkRange);
 
@@ -122,7 +124,7 @@ export default class InternalLinkCommand extends Command {
                     writer.insert(node, position);
 
                     // Create new range wrapping created node.
-                    writer.setSelection(Range.createOn(node));
+                    writer.setSelection(writer.createRangeOn(node));
                 }
             } else {
                 // If selection has non-collapsed ranges, we change attribute on nodes inside those ranges

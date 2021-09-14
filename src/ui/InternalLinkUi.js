@@ -4,7 +4,6 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ClickObserver from '@ckeditor/ckeditor5-engine/src/view/observer/clickobserver';
-import Range from '@ckeditor/ckeditor5-engine/src/view/range';
 
 import ContextualBalloon from '@ckeditor/ckeditor5-ui/src/panel/balloon/contextualballoon';
 import clickOutsideHandler from '@ckeditor/ckeditor5-ui/src/bindings/clickoutsidehandler';
@@ -504,7 +503,8 @@ export default class InternalLinkUi extends Plugin {
      * @returns {module:engine/view/attributeelement~AttributeElement|null}
      */
     getSelectedLinkElement() {
-        const selection = this.editor.editing.view.document.selection;
+        const view = this.editor.editing.view;
+        const selection = view.document.selection;
 
         if (selection.isCollapsed) {
             return this.findLinkElementAncestor(selection.getFirstPosition());
@@ -520,7 +520,7 @@ export default class InternalLinkUi extends Plugin {
             }
 
             // Check if the link element is fully selected.
-            if (Range.createIn(startLink).getTrimmed().isEqual(range)) {
+            if (view.createRangeIn(startLink).getTrimmed().isEqual(range)) {
                 return startLink;
             } else {
                 return null;

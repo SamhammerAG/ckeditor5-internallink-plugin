@@ -36,7 +36,7 @@ export default class InternalUnlinkCommand extends Command {
         model.change(writer => {
             // Get ranges to unlink.
             const rangesToUnlink = selection.isCollapsed
-                ? [findLinkRange(selection.getFirstPosition(), selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE))]
+                ? [findLinkRange(selection.getFirstPosition(), selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE), model)]
                 : selection.getRanges();
 
             // Remove `internalLinkId` attribute from specified ranges.
