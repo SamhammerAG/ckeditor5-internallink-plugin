@@ -89,6 +89,11 @@ We are using axios to do HTTP-GET requests.
 
 Returns a string with the title
 
+## How to develop
+
+For local development you can checkout this package to the "packages" folder of our inline build. Just follow these instructions:
+https://github.com/SamhammerAG/ssp-ckeditor5-build-inline
+
 ## How to publish
 
 For publishing an npm account that is referenced to the organization is required.
