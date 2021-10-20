@@ -24,6 +24,8 @@ export const CONFIG_AUTOCOMPLETE_URL = 'internallink.autocompleteurl';
 
 export const CONFIG_TITLE_URL = 'internallink.titleurl';
 
+export const CONFIG_AXIOS_INSTANCE = 'internallink.axiosInstance';
+
 export const CONFIG_PREVIEW_URL = 'internallink.previewurl';
 
 export const URL_PLACEHOLDER_ID = '{internalLinkId}';

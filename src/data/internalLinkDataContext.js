@@ -10,6 +10,7 @@ import {
     CONFIG_TEST_MODE,
     CONFIG_AUTOCOMPLETE_URL,
     CONFIG_TITLE_URL,
+    CONFIG_AXIOS_INSTANCE,
     URL_PLACEHOLDER_ID,
     URL_PLACEHOLDER_SEARCH_TERM
 } from '../util/constants';
@@ -37,7 +38,7 @@ export default class InternalLinkDataContext {
             return this.getAutocompleteTestData(searchTerm);
         }
 
-        return axios.get(autocompleteUrl);
+        return this.getAxiosInstance().get(autocompleteUrl);
     }
 
     /**
@@ -53,7 +54,7 @@ export default class InternalLinkDataContext {
             return this.getTitleTestData(itemId);
         }
 
-        return axios.get(titleUrl);
+        return this.getAxiosInstance().get(titleUrl);
     }
 
     /**
@@ -86,6 +87,19 @@ export default class InternalLinkDataContext {
         }
 
         return Promise.resolve({ data: title });
+    }
+
+    /**
+     * Gets the axios instance
+     */
+    getAxiosInstance() {
+        const customAxiosInstance = this.editor.config.get(CONFIG_AXIOS_INSTANCE);
+
+        if (customAxiosInstance) {
+            return customAxiosInstance;
+        }
+
+        return axios;
     }
 
 }

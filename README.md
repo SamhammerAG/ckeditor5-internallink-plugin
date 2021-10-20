@@ -16,7 +16,7 @@ The HTML-Tags of this plugin are looking as following:
 ```
 
 ![alt text](https://raw.githubusercontent.com/SamhammerAG/ckeditor5-internallink-plugin/master/README_Preview.png)
-  
+
 ## Features
 
  - Create and edit links
@@ -27,7 +27,7 @@ The HTML-Tags of this plugin are looking as following:
  - If text is marked the link will be added to it. Otherwise the item title with a link will be added to the text.
  - Configurable webservice urls to get the required data
  - Test mode to test the plugin without having to implement a webservice
- 
+
 ## How to use
 To be able to use this plugin you need a custom build of ckeditor.
 
@@ -54,6 +54,7 @@ Configuration flags:
 | autocompleteurl | Configure a json webservice that returns the autocomplete suggestions. The placeholder **{searchTerm}** is replaced by the search term that is entered to the autocomplete textbox. | http://www.example.com/autocomplete?term={searchTerm} |
 | titleurl | Configure a json webservice that returns the title for a referenced item. This service is called on editing an existing link. The placeholder **{internalLinkId}** is replaced by the id of the referenced item. | http://www.example.com/gettitle?itemid={internalLinkId} |
 | previewurl | The url that is used to open a preview of the referenced item in a new tab. The placeholder **{internalLinkId}** is replaced by the id of the referenced item. | http://www.google.de?q={internalLinkId} |
+| axiosInstance | This instance is used to call the autocomplete and the title url. You can use a custom instance e.g if you need interceptors for authentication. | import axios from "axios" and use this axios instance |
 
 Example:
 
@@ -64,7 +65,8 @@ InlineEditor
 			testmode: false,
 			autocompleteurl: '',
 			titleurl: '',
-			previewurl: ''
+			previewurl: '',
+			axiosIntance: undefined
 		}
 	} )
 	.then( ... )
