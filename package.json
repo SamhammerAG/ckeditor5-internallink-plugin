@@ -9,19 +9,19 @@
     "ckeditor5-feature"
   ],
   "dependencies": {
-    "@ckeditor/ckeditor5-core": "^29.0.0",
+    "@ckeditor/ckeditor5-core": "^36.0.1",
     "@ckeditor/ckeditor5-engine": "^29.0.0",
-    "@ckeditor/ckeditor5-ui": "^29.0.0",
+    "@ckeditor/ckeditor5-ui": "^36.0.1",
     "awesomplete": "^1.1.2",
     "axios": "^0.21.4"
   },
   "devDependencies": {
-    "@ckeditor/ckeditor5-editor-classic": "^29.0.0",
-    "@ckeditor/ckeditor5-enter": "^29.0.0",
-    "@ckeditor/ckeditor5-heading": "^29.0.0",
-    "@ckeditor/ckeditor5-paragraph": "^29.0.0",
-    "@ckeditor/ckeditor5-typing": "^29.0.0",
-    "@ckeditor/ckeditor5-undo": "^29.0.0",
+    "@ckeditor/ckeditor5-editor-classic": "^36.0.1",
+    "@ckeditor/ckeditor5-enter": "^36.0.1",
+    "@ckeditor/ckeditor5-heading": "^36.0.1",
+    "@ckeditor/ckeditor5-paragraph": "^36.0.1",
+    "@ckeditor/ckeditor5-typing": "^36.0.1",
+    "@ckeditor/ckeditor5-undo": "^36.0.1",
     "@ckeditor/ckeditor5-utils": "^29.0.0",
     "eslint": "^5.9.0",
     "eslint-config-ckeditor5": "^1.0.7",
