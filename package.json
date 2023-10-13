@@ -1,6 +1,6 @@
 {
   "name": "@samhammer/ckeditor5-internallink-plugin",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "A generic ckeditor plugin to create link tags containing an internal identifier instead of a url.",
   "keywords": [
     "ckeditor",
