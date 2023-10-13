@@ -32,13 +32,23 @@ export default class InternalLinkDataContext {
     getAutocompleteItems(searchTerm) {
         const isTestMode = this.editor.config.get(CONFIG_TEST_MODE);
         const url = this.editor.config.get(CONFIG_AUTOCOMPLETE_URL);
-        const autocompleteUrl = replacePlaceholderInUrl(url, URL_PLACEHOLDER_SEARCH_TERM, searchTerm);
+        let autocompleteUrl = replacePlaceholderInUrl(url, URL_PLACEHOLDER_SEARCH_TERM, searchTerm);
+
+        const index = autocompleteUrl.indexOf('?');
+        let params = new URLSearchParams();
+        if (index > 0) {
+            const arr = [autocompleteUrl.slice(0, index), autocompleteUrl.slice(index + 1)];
+            params = new URLSearchParams(arr[ 1 ]);
+            autocompleteUrl = arr[ 0 ];
+        }
 
         if (isTestMode) {
             return this.getAutocompleteTestData(searchTerm);
         }
 
-        return this.getAxiosInstance().get(autocompleteUrl);
+        return this.getAxiosInstance().get(autocompleteUrl, {
+            params: Object.fromEntries(params)
+        });
     }
 
     /**

@@ -29,5 +29,9 @@ module.exports = {
             'error',
             'before'
         ]
+    },
+    env: {
+        es6: true,
+        browser: true
     }
 };
